@@ -1,54 +1,34 @@
-# React + TypeScript + Vite
+## SmartLibrary
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an app that aims to manage a library with some twists.
 
-Currently, two official plugins are available:
+This app deals with all the basic operations that a system that deals with an archive of books should like adding/delete and edit a book.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Let's go behind the scenes
 
-## Expanding the ESLint configuration
+This app is built with React (Typescript) and it uses Firebase for authentication and to store all the data.
+It also uses tanstack query for caching , Zustand for State management and tailwind CSS fro styling.
+There's also the use of Gemini API and Google Books API.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Explaination of the coolest thing about this App**
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Adding a book: There are two ways you can do this simple action:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+   - By hand (not so funny).
+   - In a automatic way. You can put the ISBN of the book in the dedicated spot and than as if magic (Google Books API) you will see al the field fills up.
+  
+2. Searching in the archive: there are a lot of ways you can do this
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+   - using the dedicated searchbar (optimal if you have to search a book in a small archive)
+   - using the chatbot implemented with the Google Gemini API. A powerful tool trough you can ask if a book is avaiable or not in the archive (incredible if you have to look for tons of book you can let the AI do it).
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+**Setup**
+
+First of all you have to clone the project
+
+```bash
+https://github.com/nonAndre/AppLibri_VR486033
+
+   
+   
+
