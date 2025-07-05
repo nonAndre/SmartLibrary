@@ -1,34 +1,47 @@
-## SmartLibrary
+# 📚 SmartLibrary
 
-This is an app that aims to manage a library with some twists.
+**SmartLibrary** is a modern app designed to manage a library—with some clever twists.
 
-This app deals with all the basic operations that a system that deals with an archive of books should like adding/delete and edit a book.
+It supports all the basic operations you'd expect from a book archive system: **add**, **delete**, and **edit** books. But there's more behind the scenes!
 
-## Let's go behind the scenes
+---
 
-This app is built with React (Typescript) and it uses Firebase for authentication and to store all the data.
-It also uses tanstack query for caching , Zustand for State management and tailwind CSS fro styling.
-There's also the use of Gemini API and Google Books API.
+## 🔍 Behind the Scenes
 
-**Explaination of the coolest thing about this App**
+SmartLibrary is built using a powerful modern stack:
 
-1. Adding a book: There are two ways you can do this simple action:
+- ⚛️ **React (TypeScript)**
+- 🔥 **Firebase** – for authentication and data storage
+- 🧠 **TanStack Query** – for caching and async data management
+- 🪢 **Zustand** – for lightweight state management
+- 🎨 **Tailwind CSS** – for elegant and responsive styling
+- 🤖 **Gemini API** – for AI-powered search
+- 📘 **Google Books API** – for autofilling book details
 
-   - By hand (not so funny).
-   - In a automatic way. You can put the ISBN of the book in the dedicated spot and than as if magic (Google Books API) you will see al the field fills up.
-  
-2. Searching in the archive: there are a lot of ways you can do this
+---
 
-   - using the dedicated searchbar (optimal if you have to search a book in a small archive)
-   - using the chatbot implemented with the Google Gemini API. A powerful tool trough you can ask if a book is avaiable or not in the archive (incredible if you have to look for tons of book you can let the AI do it).
+## 🚀 Features
 
-**Setup**
+### 1. 📖 Adding a Book
 
-First of all you have to clone the project
+You’ve got **two ways** to add a new book:
+
+- **Manual Entry** (for the nostalgic).
+- **Automatic Magic**: Just enter the ISBN and—thanks to the **Google Books API**—the fields will populate automatically. Like magic!
+
+### 2. 🔎 Searching the Archive
+
+Find what you need fast:
+
+- **Search Bar** – Great for quick, small-scale lookups.
+- **Chatbot Powered by Gemini API** – Ask in natural language whether a book is available. Perfect for huge archives where AI does the heavy lifting.
+
+---
+
+## ⚙️ Setup
+
+### 1. 📥 Clone the Repository
 
 ```bash
-https://github.com/nonAndre/AppLibri_VR486033
-
-   
-   
-
+git clone https://github.com/nonAndre/AppLibri_VR486033.git
+cd AppLibri_VR486033
