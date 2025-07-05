@@ -45,3 +45,30 @@ Find what you need fast:
 ```bash
 git clone https://github.com/nonAndre/AppLibri_VR486033.git
 cd AppLibri_VR486033
+```
+
+### 2. 💻 Install Dependencies
+
+```bash
+nvm use
+npm install
+```
+### 3. 🛠️ Configure Environment Variables
+
+Create a ```env .env``` file in the root of the project and add the following:
+
+```bash
+VITE_APIKEY=your_key
+VITE_AUTHDOMAIN=your_key
+VITE_PROJECTID=your_key
+VITE_STORAGEBUCKET=your_key
+VITE_MESSAGESENDERID=your_key
+VITE_APPID=your_key
+VITE_GOOGLEAPI=your_key
+VITE_GEMINI=your_key
+```
+
+### 4. ▶️ Run the App
+```bash
+npm run dev
+```
