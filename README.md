@@ -55,7 +55,7 @@ npm install
 ```
 ### 3. 🛠️ Configure Environment Variables
 
-Create a ```env .env``` file in the root of the project and add the following:
+Create a ```.env``` file in the root of the project and add the following:
 
 ```bash
 VITE_APIKEY=your_key
