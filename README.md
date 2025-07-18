@@ -44,7 +44,7 @@ Find what you need fast:
 
 ```bash
 git clone https://github.com/nonAndre/SmartLibrary.git
-cd AppLibri_VR486033
+cd SmartLibrary
 ```
 
 ### 2. 💻 Install Dependencies
