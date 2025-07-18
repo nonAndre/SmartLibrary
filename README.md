@@ -43,7 +43,7 @@ Find what you need fast:
 ### 1. 📥 Clone the Repository
 
 ```bash
-git clone https://github.com/nonAndre/AppLibri_VR486033.git
+git clone https://github.com/nonAndre/SmartLibrary.git
 cd AppLibri_VR486033
 ```
 
