@@ -5,3 +5,12 @@
     @apply bg-black/50;
   }
 }
+
+@font-face {
+    font-family: Tesla;
+    src: url("../src/assets/fonts/TESLA.ttf");
+}
+
+@theme{
+    --font-tesla:"Tesla",sans-serif;
+}

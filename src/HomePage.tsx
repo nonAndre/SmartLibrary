@@ -1,33 +1,46 @@
-import "./style.css";
 import useAuthStore from "../zustand/usersManager.ts";
-import book from "./assets/bluebook.png";
-import { BsPlus} from "react-icons/bs";
-import Table from "./Table.tsx";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { IoIosAddCircle } from "react-icons/io";
 import { RiGeminiLine } from "react-icons/ri";
 import useGeneralStore from "../zustand/generalState.ts";
-
+import Header from "./components/Header.tsx";
 
 function HomePage() {
-  const {user,setUser} = useAuthStore();
+  const { user, setUser } = useAuthStore();
   const navigate = useNavigate();
-  const [search,setSearch] = useState("");
-  const {isGeminiOpen,setIsGeminiOpen}=useGeneralStore();
-  
-  const logout =()=>
-  {
-     setUser(null);
-     navigate('/');
-  }
+  const [search, setSearch] = useState("");
+  //const { isGeminiOpen, setIsGeminiOpen } = useGeneralStore();
 
-  const getBookToSearch = (event:any)=>
-  {
+  const logout = () => {
+    setUser(null);
+    navigate("/");
+  };
+
+  const getBookToSearch = (event: any) => {
     setSearch(event.target.value);
-  }
+  };
 
-  return( 
-    <div className="flex h-screen bg-blue-300 items-center justify-center">
+  return (
+    <div className="flex flex-col h-screen bg-white">
+      <Header />
+      <div className="flex flex-row h-full w-full">
+        <div className="flex flex-col  w-1/6 h-full bg-white border-r-2 border-gray-200 pt-10 px-4">
+          <p className="text-xl text-gray-400 pb-2">General</p>
+          <button className="flex flex-row py-5 items-center gap-2 cursor-pointer hover:bg-gray-100 h-1/12">
+            <IoIosAddCircle size={30} />
+            <p className="text-2xl">Add book</p>
+          </button>
+        </div>
+        <div className="flex flex-col w-5/6 h-full bg-white"></div>
+      </div>
+    </div>
+  );
+}
+
+export default HomePage;
+
+/** <div className="flex h-screen bg-blue-300 items-center justify-center">
       <div className="flex bg-white h-9/10 w-9/10 flex-col items-center ">
       
         <div className="flex w-full h-1/9 pt-4 px-6 justify-between items-center">
@@ -75,10 +88,4 @@ function HomePage() {
       
 
                </div>
-   </div>  
-  );
- 
-
-}
-
-export default HomePage;
+   </div>   */
