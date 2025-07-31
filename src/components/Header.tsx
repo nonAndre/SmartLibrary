@@ -62,7 +62,7 @@ export default function Header() {
       ) : (
         <div></div>
       )}
-      <div className="relative flex h-1/10 w-full px-4 shadow-2xl  justify-between">
+      <div className="relative flex h-1/10 w-full px-4 shadow-md  justify-between">
         <div className="flex flex-row justify-start h-full  items-center  w-1/2 ">
           <div className="flex flex-row w-1/2 h-full items-center">
             <img src={book} className="object-contain h-full" />

@@ -25,7 +25,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex h-screen  bg-gradient-to-r from-blue-200 to-green-300 justify-center items-center">
+    <div className="flex h-screen  bg-gradient-to-r from-blue-100 to-blue-200 justify-center items-center">
       <div className="flex flex-row w-4/6 h-9/12  rounded-2xl  items-center bg-white max-md:w-4/6 max-sm:w-5/6 shadow-2xl max-lg:w-5/6">
         <ToastContainer
           position="top-center"
