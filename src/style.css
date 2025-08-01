@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
 @layer components {
+  
   dialog::backdrop {
     @apply bg-black/50;
   }
+
+ 
 }
 
 @font-face {

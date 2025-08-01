@@ -96,7 +96,7 @@ export default function GeminiAssistantPanel() {
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end items-end p-4 modal">
-      <div className="relative bg-white w-[25%] h-[60%] p-4 rounded-2xl shadow-xl z-50 flex flex-col border border-gray-200">
+      <div className="relative bg-white w-[25%] h-[60%] p-4 rounded-2xl  z-50 flex flex-col border border-gray-200 max-xl:w-3/5 shadow-2xl">
         <div className="flex flex-row mb-4 items-center justify-between">
           <h1 className="text-xl font-semibold text-gray-800">
             Gemini Assistant

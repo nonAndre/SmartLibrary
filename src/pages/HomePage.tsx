@@ -2,7 +2,6 @@ import useAuthStore from "../../zustand/usersManager.ts";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import { IoAdd } from "react-icons/io5";
-import { RiGeminiLine } from "react-icons/ri";
 import useGeneralStore from "../../zustand/generalState.ts";
 import Header from "./../components/Header.tsx";
 import { useQuery } from "@tanstack/react-query";
@@ -13,15 +12,18 @@ import { MdModeEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import { CiSearch } from "react-icons/ci";
+import GeminiAssistantPanel from "../components/GeminiAssistantPanel.tsx";
 
 function HomePage() {
   const navigate = useNavigate();
-  const [search, setSearch] = useState("");
   const { user } = useAuthStore();
+  const { isGeminiOpen, setIsGeminiOpen } = useGeneralStore();
   const userId = user?.uid;
   const [isOpen, setIsOpen] = useState(false);
   const [appoUid, setAppoUid] = useState("");
   const [appoBookUid, setAppoBookUid] = useState("");
+  const [appoBookIsbn, setAppoBookIsbn] = useState("");
+
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
@@ -29,17 +31,18 @@ function HomePage() {
 
   const categories: string[] = [
     "Isbn",
-    "Titolo",
-    "Autori",
-    "Anno di pubblicazione",
-    "Casa Editrice",
-    "Categoria",
-    "Azioni",
+    "Title",
+    "Authors",
+    "Release Year",
+    "Publisher",
+    "Genre",
+    "Actions",
   ];
 
-  const deleteActions = (userId: string, bookId: string) => {
+  const deleteActions = (userId: string, bookId: string, isbn: string) => {
     setAppoUid(userId);
     setAppoBookUid(bookId);
+    setAppoBookIsbn(isbn);
     setIsOpen(true);
   };
 
@@ -102,24 +105,24 @@ function HomePage() {
             onClick={() => setIsOpen(false)}
           ></div>
 
-          <div className="relative bg-white w-2/6 p-6 rounded-lg shadow-lg z-50 flex flex-col justify-between">
+          <div className="relative bg-white w-2/6 p-6 rounded-lg shadow-lg z-50 flex flex-col justify-between max-sm:w-3/4">
             <div>
               <h1 className="font-bold text-lg">
-                Stai per eliminare un libro, sei sicuro?
+                You are about to delete a book,are you sure?
               </h1>
-              <p className="pt-5 text-xl">Id: {appoBookUid}</p>
+              <p className="pt-5 text-xl">Isbn: {appoBookIsbn}</p>
             </div>
 
             <div className="flex flex-row justify-between mt-6">
               <button
-                className="cursor-pointer h-10 w-1/3 bg-red-400 hover:bg-red-500 rounded text-white"
+                className="cursor-pointer h-10 w-1/3 bg-red-500 hover:bg-red-700 rounded text-white"
                 onClick={() => setIsOpen(false)}
               >
-                <p className="text-xl text-center">Annulla</p>
+                <p className="text-xl text-center">Cancel</p>
               </button>
 
               <button
-                className="cursor-pointer h-10 w-1/3 bg-blue-400 hover:bg-blue-500 rounded text-white"
+                className="cursor-pointer h-10 w-1/3 bg-blue-500 hover:bg-blue-700 rounded text-white"
                 onClick={() =>
                   deleteBook(appoUid, appoBookUid)
                     .then(() => {
@@ -129,7 +132,7 @@ function HomePage() {
                     .catch(() => toast.error("Delete failed"))
                 }
               >
-                <p className="text-xl text-center">Elimina</p>
+                <p className="text-xl text-center">Delete</p>
               </button>
             </div>
           </div>
@@ -140,80 +143,115 @@ function HomePage() {
 
       <div className="flex flex-col h-screen bg-white">
         <Header />
-        <div className="flex flex-col h-full w-full">
-          <div className="flex flex-row justify-between items-center px-10 h-[10%]">
-            <div className="flex w-1/2">
-              <p className="text-2xl">All Books</p>
-            </div>
-            <div className="flex flex-row items-center w-1/2 justify-end gap-10">
-              <div className="flex flex-row items-center w-2/6 border border-gray-300 rounded-md px-2 cursor-pointer">
+        <div className="flex flex-col flex-1 px-10 py-6 max-sm:px-5">
+          {isGeminiOpen ? <GeminiAssistantPanel /> : <div></div>}
+          <div className="flex items-center justify-between mb-6 max-sm:flex-col max-sm:items-start">
+            <h1 className="text-2xl font-semibold ">All Books</h1>
+            <div className="flex items-center gap-6 max-sm:py-4">
+              <div className="flex items-center border border-gray-300 rounded-md px-2">
                 <CiSearch size={20} className="text-gray-500" />
                 <input
-                  className="w-full px-2 py-1 outline-none"
+                  className="w-48 px-2 py-1 outline-none max-sm:w-30"
                   placeholder="Look for a book"
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-
               <button
-                className="flex flex-row items-center justify-center gap-2 w-1/5 bg-blue-700 rounded-md px-4 py-2 hover:bg-blue-500 cursor-pointer"
-                onClick={() => {
-                  navigate("/home/addBook");
-                }}
+                onClick={() => navigate("/home/addBook")}
+                className="flex items-center gap-2 bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-md cursor-pointer"
               >
-                <IoAdd size={30} color="white" />
-                <p className="text-white text-xl">Add book</p>
+                <IoAdd size={24} />
+                <span className="text-md">Add book</span>
               </button>
             </div>
           </div>
 
-          <div className="px-8 py-6 overflow-auto w-full ">
-            <div className="grid grid-cols-7 gap-4 bg-white px-4 py-3 rounded-md font-bold">
-              {categories.map((item, index) => (
-                <div key={index} className="text-start">
-                  {item}
-                </div>
-              ))}
-            </div>
+          <div className="flex text-lg font-medium text-gray-700 py-2 border-b border-gray-300 max-md:hidden">
+            {categories.map((cat, idx) => (
+              <div
+                key={idx}
+                className={`px-2 ${cat === "Azioni" ? "w-1/6" : "w-1/6"}`}
+              >
+                {cat}
+              </div>
+            ))}
+          </div>
 
-            {filteredData?.map((item: BookArchive, index: number) =>
-              item.libriSalvati.map((libro: SavedBook, idx: number) => (
+          <div className="flex flex-col gap-2 overflow-y-auto ">
+            {filteredData?.map((item: BookArchive, idx: number) =>
+              item.libriSalvati.map((book, i) => (
                 <div
-                  key={`${index}-${idx}`}
-                  className="grid grid-cols-7 gap-4 border-b border-b-gray-400 px-4 py-2 text-start hover:bg-gray-200"
+                  key={`${idx}-${i}`}
+                  className="flex flex-row items-center  border-b border-gray-200 hover:bg-gray-100 transition py-5 max-md:flex-col max-md:gap-2"
                 >
-                  <p>{libro.isbn}</p>
-                  <p>{libro.Titolo}</p>
-                  <p>
-                    {Array.isArray(libro.Autore)
-                      ? libro.Autore.map((author, i) => (
-                          <span key={i}>
-                            {author}
-                            <br />
-                          </span>
-                        ))
-                      : libro.Autore}
-                  </p>
-                  <p>{libro.DataUscita}</p>
-                  <p>{libro.casaEditrice}</p>
-                  <p>{libro.Categoria}</p>
-                  <div className="flex flex-row gap-10">
+                  <div className="flex-row flex max-md:gap-3 w-1/6 px-2 text-md max-md:w-full ">
+                    <p className="hidden max-md:block max-md:font-bold">
+                      Isbn:{" "}
+                    </p>
+                    {book.isbn}
+                  </div>
+                  <div className="flex-row flex max-md:gap-3 w-1/6 px-2 text-md max-md:w-full">
+                    <p className="hidden max-md:block max-md:font-bold">
+                      Title:{" "}
+                    </p>
+
+                    {book.Titolo}
+                  </div>
+                  <div className="flex-row flex max-md:gap-3 w-1/6 px-2 text-md max-md:w-full">
+                    <p className="hidden max-md:block max-md:font-bold">
+                      Authors:{" "}
+                    </p>
+
+                    {Array.isArray(book.Autore)
+                      ? book.Autore.join(", ")
+                      : book.Autore}
+                  </div>
+                  <div className="flex-row flex max-md:gap-3 w-1/6 px-2 text-md max-md:w-full">
+                    <p className="hidden max-md:block max-md:font-bold">
+                      Release Year:{" "}
+                    </p>
+
+                    {book.DataUscita}
+                  </div>
+                  <div className="flex-row flex max-md:gap-3 w-1/6 px-2 text-md max-md:w-full">
+                    <p className="hidden max-md:block max-md:font-bold">
+                      Publisher:{" "}
+                    </p>
+
+                    {book.casaEditrice}
+                  </div>
+                  <div className="flex-row flex max-md:gap-3 w-1/6 px-2 text-md max-md:w-full">
+                    <p className="hidden max-md:block max-md:font-bold">
+                      Genre:{" "}
+                    </p>
+
+                    {Array.isArray(book.Categoria)
+                      ? book.Categoria.join(", ")
+                      : book.Categoria}
+                  </div>
+                  <div className="flex flex-row gap-1 justify-start w-1/6 max-md:w-full">
                     <div
                       className="p-2 rounded-full hover:bg-blue-200 cursor-pointer transition"
                       onClick={() =>
                         navigate("/home/modifyBook", {
-                          state: { UsId: userId, bookData: libro },
+                          state: { UsId: userId, bookData: book },
                         })
                       }
                     >
-                      <MdModeEdit size={25} className="cursor-pointer" />
+                      <MdModeEdit
+                        size={25}
+                        className="cursor-pointer"
+                        color="blue"
+                      />
                     </div>
                     <div className="p-2 rounded-full hover:bg-red-200 cursor-pointer transition">
                       <MdDelete
                         size={25}
                         className="cursor-pointer"
                         color="red"
-                        onClick={() => deleteActions(item.idUser, libro.bookId)}
+                        onClick={() =>
+                          deleteActions(item.idUser, book.bookId, book.isbn)
+                        }
                       />
                     </div>
                   </div>
