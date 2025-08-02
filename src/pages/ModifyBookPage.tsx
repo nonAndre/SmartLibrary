@@ -194,7 +194,7 @@ export default function ModifyBookPage() {
               value={category}
             />
 
-            <div className="flex flex-row justify-between  w-7/10 py-2">
+            <div className="flex flex-row justify-between  w-7/10 pb-5">
               <button
                 type="button"
                 className="flex mt-4 bg-red-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-red-600 cursor-pointer"

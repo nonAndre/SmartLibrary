@@ -148,7 +148,7 @@ function HomePage() {
           <div className="flex items-center justify-between mb-6 max-sm:flex-col max-sm:items-start">
             <h1 className="text-2xl font-semibold ">All Books</h1>
             <div className="flex items-center gap-6 max-sm:py-4">
-              <div className="flex items-center border border-gray-300 rounded-md px-2">
+              <div className="flex items-center border border-gray-300 rounded-md px-2 ">
                 <CiSearch size={20} className="text-gray-500" />
                 <input
                   className="w-48 px-2 py-1 outline-none max-sm:w-30"
@@ -166,7 +166,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="flex text-lg font-medium text-gray-700 py-2 border-b border-gray-300 max-md:hidden">
+          <div className="flex text-lg font-medium text-gray-700 py-2 border-b border-gray-300 max-md:hidden ">
             {categories.map((cat, idx) => (
               <div
                 key={idx}
@@ -177,12 +177,12 @@ function HomePage() {
             ))}
           </div>
 
-          <div className="flex flex-col gap-2 overflow-y-auto ">
+          <div className="flex flex-col overflow-y-auto">
             {filteredData?.map((item: BookArchive, idx: number) =>
               item.libriSalvati.map((book, i) => (
                 <div
                   key={`${idx}-${i}`}
-                  className="flex flex-row items-center  border-b border-gray-200 hover:bg-gray-100 transition py-5 max-md:flex-col max-md:gap-2"
+                  className="flex flex-row items-center  border-b border-gray-200 hover:bg-gray-100 transition py-5 max-md:flex-col max-md:gap-2 "
                 >
                   <div className="flex-row flex max-md:gap-3 w-1/6 px-2 text-md max-md:w-full ">
                     <p className="hidden max-md:block max-md:font-bold">
