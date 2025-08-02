@@ -2,8 +2,6 @@
 
 **SmartLibrary** is a modern app designed to manage a library—with some clever twists.
 
-You can try it [here](https://nonandre.github.io/SmartLibrary/)
-
 It supports all the basic operations you'd expect from a book archive system: **add**, **delete**, and **edit** books. But there's more behind the scenes!
 
 ---
