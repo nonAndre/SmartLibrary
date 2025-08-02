@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../zustand/usersManager";
-import book from "../assets/bluebook.png";
 import { useState } from "react";
 import { BsTrash3, BsClipboardCheck } from "react-icons/bs";
 import {
@@ -170,7 +169,6 @@ export default function AddBookPage() {
   const fillFields = async (isbn: string) => {
     await getBooksData(isbn)
       .then((bookInfo: GoogleBooksResponse) => {
-        console.log(bookInfo);
         bookInfo.items.map((item) => {
           setbookId(item.id);
           setTitle(item.volumeInfo.title);

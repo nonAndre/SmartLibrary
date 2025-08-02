@@ -73,15 +73,11 @@ export default function GeminiAssistantPanel() {
       } else {
         const estrazioneTitoli = await gemini(getTitlesPrompt + input);
 
-        console.log(estrazioneTitoli);
-
         const descArray = estrazioneTitoli
           .toLowerCase()
           .split(",")
           .map((t) => t.trim())
           .filter((t) => t.length > 0);
-
-        console.log(descArray);
 
         const checkResult = checkInArchive(descArray);
 

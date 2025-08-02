@@ -11,8 +11,7 @@ export const fetchBooks = async (userId:string) => {
       libri.push({ ...doc.data(), id: doc.id });
     });
 
-    console.log("UserId"+userId);
-    console.log(libri);
+    
     
     return libri;
   };
