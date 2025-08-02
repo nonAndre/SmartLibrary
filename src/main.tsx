@@ -11,28 +11,33 @@ import ModifyBookPage from "../src/pages/ModifyBookPage.tsx";
 
 const queryClient = new QueryClient();
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Login />,
+    },
+    {
+      path: "/home",
+      element: <HomePage />,
+    },
+    {
+      path: "/signUp",
+      element: <SignUp />,
+    },
+    {
+      path: "/home/addBook",
+      element: <AddBookPage />,
+    },
+    {
+      path: "/home/modifyBook",
+      element: <ModifyBookPage />,
+    },
+  ],
   {
-    path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/home",
-    element: <HomePage />,
-  },
-  {
-    path: "/signUp",
-    element: <SignUp />,
-  },
-  {
-    path: "/home/addBook",
-    element: <AddBookPage />,
-  },
-  {
-    path: "/home/modifyBook",
-    element: <ModifyBookPage />,
-  },
-]);
+    basename: "/SmartLibrary",
+  }
+);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
