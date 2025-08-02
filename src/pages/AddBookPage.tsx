@@ -18,7 +18,6 @@ import { ToastContainer, toast } from "react-toastify/unstyled";
 import { getBooksData } from "../../googleBooksManager/BooksFunctions";
 import { gemini } from "../../gemini-Ai/geminiManager";
 import GeminiAssistantPanel from "../components/GeminiAssistantPanel";
-import { RiGeminiLine } from "react-icons/ri";
 import useGeneralStore from "../../zustand/generalState";
 import Header from "../components/Header";
 

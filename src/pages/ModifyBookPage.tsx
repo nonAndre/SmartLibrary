@@ -2,7 +2,6 @@ import { useState } from "react";
 import { BsTrash3 } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import useAuthStore from "../../zustand/usersManager";
 import type { ModifyBook, SavedBook } from "../../types/books";
 import {
   query,

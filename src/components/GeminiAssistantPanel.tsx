@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import useGeneralStore from "../../zustand/generalState";
@@ -21,6 +21,7 @@ export default function GeminiAssistantPanel() {
   const [input, setInput] = useState("");
   const { user } = useAuthStore();
   const userId = user?.uid;
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const fetchBooks = async () => {
     let libri: any = [];
@@ -94,9 +95,15 @@ export default function GeminiAssistantPanel() {
     }
   };
 
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   return (
     <div className="fixed inset-0 z-50 flex justify-end items-end p-4 modal">
-      <div className="relative bg-white w-[25%] h-[60%] p-4 rounded-2xl  z-50 flex flex-col border border-gray-200 max-xl:w-3/5 shadow-2xl">
+      <div className="relative bg-white w-[25%] h-[60%] p-4 rounded-2xl  z-50 flex flex-col border border-gray-200 max-xl:w-3/5 shadow-2xl max-sm:w-full">
         <div className="flex flex-row mb-4 items-center justify-between">
           <h1 className="text-xl font-semibold text-gray-800">
             Gemini Assistant
@@ -121,6 +128,7 @@ export default function GeminiAssistantPanel() {
               {msg.text}
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
 
         <div className="mt-4 flex items-center gap-2 border rounded-full px-4 py-2 shadow-sm">

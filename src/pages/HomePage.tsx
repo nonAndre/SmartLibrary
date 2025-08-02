@@ -6,7 +6,7 @@ import useGeneralStore from "../../zustand/generalState.ts";
 import Header from "./../components/Header.tsx";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBooks, deleteBook } from "../utils/firebaseUtils.ts";
-import type { BookArchive, SavedBook } from "../../types/books.ts";
+import type { BookArchive } from "../../types/books.ts";
 
 import { MdModeEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
